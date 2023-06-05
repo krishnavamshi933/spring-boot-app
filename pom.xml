@@ -10,7 +10,6 @@
     <properties>
         <java.version>11</java.version>
         <spring-boot.version>2.5.0</spring-boot.version>
-        <start-class>com.example.ApplicationMainClass</start-class>
     </properties>
 
     <dependencies>
@@ -29,9 +28,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
-                <configuration>
-                    <executable>true</executable>
-                </configuration>
             </plugin>
             <!-- Maven Compiler Plugin -->
             <plugin>
