@@ -24,7 +24,7 @@ jobs:
       - name: Deploy JAR to EC2
         uses: appleboy/scp-action@master
         with:
-          host: 172.31.17.144
+          host: 
           username: ec2-user
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: /home/runner/work/spring-boot-app/spring-boot-app/target/spring-boot-app-1.0.0.jar
