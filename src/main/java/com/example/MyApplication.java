@@ -15,10 +15,10 @@ public class MyApplication {
 }
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping
 class HelloController {
 
-    @GetMapping("/hello")
+    @GetMapping("/")
     public String hello() {
         return "Hello, Spring Boot!";
     }
