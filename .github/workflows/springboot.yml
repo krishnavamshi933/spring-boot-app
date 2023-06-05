@@ -2,30 +2,34 @@ name: Spring Boot CI/CD
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  build:
+  build-and-deploy:
+
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Set up JDK 11
+      - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          java-version: '11'
+          java-version: 11
 
       - name: Build with Maven
-        run: mvn clean package
+        run: mvn clean install
 
-      - name: Deploy JAR to EC2
-        uses: appleboy/scp-action@master
+      - name: Deploy to EC2 instance
+        uses: appleboy/ssh-action@master
         with:
-          host: 
-          username: ec2-user
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: /home/runner/work/spring-boot-app/spring-boot-app/target/spring-boot-app-1.0.0.jar
-          target: /home/ec2-user/spring-boot-app/spring-boot-app-1.0.0.jar
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          port: ${{ secrets.EC2_PORT }}
+          script: |
+            cd 
+            /home/ec2-user/spring-boot-app
+            mvn spring-boot:run
