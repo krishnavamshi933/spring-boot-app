@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-public class HelloController {
+public class MyApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(HelloController.class, args);
+        SpringApplication.run(MyApplication.class, args);
     }
 }
 
